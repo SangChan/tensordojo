@@ -12,3 +12,7 @@ my_list = []
 print(bool(my_list))
 my_list.append("s")
 print(bool(my_list))
+
+help(my_list.clear)
+
+eval('10*5')

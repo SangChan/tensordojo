@@ -1,5 +1,5 @@
-import turtle
-t = turtle.Pen()
+#import turtle
+#t = turtle.Pen()
 
 class Animal:
     def __init__(self, species, number_of_legs, color):
@@ -14,3 +14,9 @@ harriet = copy.copy(harry)
 
 print(harry.species)
 print(harriet.species)
+
+import keyword
+
+print(keyword.iskeyword('if'))
+print(keyword.iskeyword('ozwald'))
+print(keyword.kwlist)

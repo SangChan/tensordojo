@@ -1,10 +1,11 @@
-from tkinter import *
+import tkinter
 
 def hello():
     print("hello there")
-    
 
-tk = Tk()
-btn = Button(tk, text = "click me", command=hello)
+
+tk = tkinter.Tk()
+btn = tkinter.Button(tk, text = "click me", command=hello)
 btn.pack()
+tkinter.mainloop()
 

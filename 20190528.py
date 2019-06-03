@@ -17,10 +17,15 @@ def random_rect(width, height):
     y2 = y1 + random.randrange(height)
     canvas.create_rectangle(x1,y1,x2,y2)
 
+def movetriangle(event):
+    canvas.move(1,5,0)
+
 tk = tkinter.Tk()
 canvas = tkinter.Canvas(tk, width = 500, height = 500)
 canvas.pack()
 #canvas.create_line(0,0,500,500)
-for x in range(0,100):
-    random_rect(400,400)
+#for x in range(0,100):
+#    random_rect(400,400)
+canvas.create_polygon(10,10,10,60,50,35)
+canvas.bind_all('<KeyPress-Return>',movetriangle)
 tkinter.mainloop()

@@ -80,3 +80,8 @@ while 1:
     tk.update_idletasks()
     tk.update()
     time.sleep(0.01)
+
+# Game Over
+# Start from space bar
+# Add accelation from paddle moving
+# Add score when paddle touch ball

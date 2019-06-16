@@ -49,6 +49,7 @@ class Paddle:
         self.canvas.bind_all("<KeyPress-Left>", self.turn_left)
         self.canvas.bind_all("<KeyPress-Right>", self.turn_right)
         self.canvas.bind_all("<KeyPress-Space>", self.shoot)
+        self.canvas.bind_all("<Button-1". self.game_start)
 
     def turn_left(self, evt):
         self.x = -2
@@ -58,6 +59,9 @@ class Paddle:
 
     def shoot(self, evt):
         # how to notify to ball?
+    
+    def game_start(self, evt):
+        # how to start game?
 
     def draw(self):
         self.canvas.move(self.id, self.x, 0)

@@ -26,6 +26,7 @@ class Ball:
         if pos[3] >= self.canvas_height:
             self.hit_bottom = True
         if self.hit_paddle(pos) == True:
+            self.add_point()
             self.y = -3
         if pos[0] <= 0:
             self.x = 3
@@ -38,6 +39,9 @@ class Ball:
             if pos[3] >= paddle_pos[1] and pos[3] <= paddle_pos[3]:
                 return True
         return False
+
+    def add_point():
+        # add point
 
 class Paddle:
     def __init__(self,canvas,color):

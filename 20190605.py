@@ -41,7 +41,8 @@ class Ball:
         return False
 
     def add_point():
-        # add point
+        return 0 # add point
+
 
 class Paddle:
     def __init__(self,canvas,color):
@@ -53,7 +54,7 @@ class Paddle:
         self.canvas.bind_all("<KeyPress-Left>", self.turn_left)
         self.canvas.bind_all("<KeyPress-Right>", self.turn_right)
         self.canvas.bind_all("<KeyPress-Space>", self.shoot)
-        self.canvas.bind_all("<Button-1". self.game_start)
+        self.canvas.bind_all("<Button-1>", self.game_start)
 
     def turn_left(self, evt):
         self.x = -2
@@ -62,10 +63,10 @@ class Paddle:
         self.x = 2
 
     def shoot(self, evt):
-        # how to notify to ball?
+        return 0 # how to notify to ball?
     
     def game_start(self, evt):
-        # how to start game?
+        return 0 # how to start game?
 
     def draw(self):
         self.canvas.move(self.id, self.x, 0)

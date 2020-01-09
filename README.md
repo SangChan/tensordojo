@@ -1,49 +1,63 @@
 # Tensor Dojo
 
-# OSX env
+This is the place to try and learn machine learning 
 
-## install python3
+# in OSX env
 
-brew install python3
+### install python3
 
-## install tensorflow and verify
+<pre><code>brew install python3</code></pre>
 
-pip3 install --user --upgrade tensorflow
-python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"
+### install tensorflow and verify
 
-## install ide
+<pre><code>pip3 install --user --upgrade tensorflow
+python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"</code></pre>
+
+### install ide
 
 - jupyter notebook
 - pyCharm
 - Visual Studio Code
 
-# synology docker env
+# in synology docker env
 
-pull docker image from docker hub
-need to build because cpu doesn't support AVX
+pull docker image from docker hub but need to build because cpu doesn't support AVX
+
+### build on synology it self
+
+So, need to add "-mno-avx" when bazel build. try to test "import tensorflow as tf" and just aborted, means need to build by yourself. Recommend to replace like following.
+<pre><code>-march=core2
+-march=native -mno-avx
+</code></pre>
+
+### use anacoda
+
+pull docker image about anaconda distribution and download tensorflow conda package
 
 # build from source
 
-## pull from github
+### pull from github
 
-git clone https://github.com/tensorflow/tensorflow.git
-git checkout tags/v2.0.0 -b v2.0.0
+<pre><code>git clone https://github.com/tensorflow/tensorflow.git
+git checkout tags/v2.0.0 -b v2.0.0</code></pre>
 
-## install bazel (in docker way with 2.0.0 version of tensorflow)
+### install bazel (in docker way with 2.0.0 version of tensorflow)
 
-apt install g++ unzip zip
+<pre><code>apt install g++ unzip zip
 apt-get install openjdk-8-jdk
-./bazel-0.26.1-installer-linux-x86_64.sh
+./bazel-0.26.1-installer-linux-x86_64.sh</code></pre>
 
-## configure bazel build setting
+### configure bazel build setting
 
-./configure
+<pre><code>./configure</code></pre>
 
-## build
+### build
 
-bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
-./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+<pre><code>bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package
+./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg</code></pre>
 
-## install 
+*note* on this command *//tensorflow/blahblah* means target what bazel build need, nor comment on C lang..
 
-pip install /tmp/tensorflow_pkg/tensorflow-version-tags.whl
+### install 
+
+<pre><code>pip install /tmp/tensorflow_pkg/tensorflow-version-tags.whl</code></pre>

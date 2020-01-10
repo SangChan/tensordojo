@@ -21,7 +21,7 @@ python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduc
 
 # in synology docker env
 
-pull docker image from docker hub but need to build because cpu doesn't support AVX
+pull docker image from docker hub but need to build because celeron cpu doesn't support AVX
 
 ### build on synology it self
 
@@ -29,6 +29,8 @@ So, need to add "-mno-avx" when bazel build. try to test "import tensorflow as t
 <pre><code>-march=core2
 -march=native -mno-avx
 </code></pre>
+
+And if you don't want to see about warning message cpu command like sse4.1, you better to remove FATAL warning message from /tensorflow/core/platform/cpu_feature_guard.cc
 
 ### use anacoda
 

@@ -11,7 +11,9 @@ This is the place to try and learn machine learning
 ### install tensorflow and verify
 
 <pre><code>pip3 install --user --upgrade tensorflow
-python3 -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"</code></pre>
+python3 -c
+import tensorflow as tf
+print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 
 ### install ide
 
@@ -30,7 +32,7 @@ So, need to add "-mno-avx" when bazel build. try to test "import tensorflow as t
 -march=native -mno-avx
 </code></pre>
 
-And if you don't want to see about warning message cpu command like sse4.1, you better to remove FATAL warning message from /tensorflow/core/platform/cpu_feature_guard.cc
+And if you don't want to see about warning message cpu command like sse4.1, you'd better to remove FATAL warning message from /tensorflow/core/platform/cpu_feature_guard.cc
 
 ### use anacoda
 

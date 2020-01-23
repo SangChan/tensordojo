@@ -27,7 +27,6 @@ plt.imshow(train_images[0])
 plt.colorbar()
 plt.grid(False)
 plt.show()
-
 train_images = train_images / 255.0
 test_images = test_images / 255.0
 
@@ -114,3 +113,16 @@ for i in range(num_images):
   plt.subplot(num_rows, 2*num_cols, 2*i+2)
   plot_value_array(i, predictions, test_labels)
 plt.show()
+
+img = test_images[0]
+
+print(img.shape)
+img = (np.expand_dims(img,0))
+
+print(img.shape)
+predictions_single = model.predict(img)
+
+print(predictions_single)
+plot_value_array(0, predictions_single, test_labels)
+_ = plt.xticks(range(10), class_names, rotation=45)
+np.argmax(predictions_single[0])

@@ -17,8 +17,6 @@ print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 
 ### install ide
 
-- jupyter notebook
-- pyCharm
 - Visual Studio Code
 
 # in synology docker env

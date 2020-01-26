@@ -1,6 +1,7 @@
 # Tensor Dojo
 
-This is the place to try and learn machine learning 
+- This is the place to try and learn machine learning
+- Tensorflow >= 2.0
 
 # in OSX env
 

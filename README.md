@@ -1,6 +1,7 @@
 # Tensor Dojo
 
-This is the place to try and learn machine learning 
+- This is the place to try and learn machine learning
+- Tensorflow >= 2.0
 
 # in OSX env
 
@@ -17,15 +18,13 @@ print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 
 ### install ide
 
-- jupyter notebook
-- pyCharm
 - Visual Studio Code
 
 # in synology docker env
 
 pull docker image from docker hub but need to build because celeron cpu doesn't support AVX
 
-### build on synology it self
+### option #1 build on synology it self
 
 So, need to add "-mno-avx" when bazel build. try to test "import tensorflow as tf" and just aborted, means need to build by yourself. Recommend to replace like following.
 <pre><code>-march=core2
@@ -34,7 +33,7 @@ So, need to add "-mno-avx" when bazel build. try to test "import tensorflow as t
 
 And if you don't want to see about warning message cpu command like sse4.1, you'd better to remove FATAL warning message from /tensorflow/core/platform/cpu_feature_guard.cc
 
-### use anacoda
+### option #2 use anacoda
 
 pull docker image about anaconda distribution and download tensorflow conda package
 

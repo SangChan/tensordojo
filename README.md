@@ -37,6 +37,8 @@ And if you don't want to see about warning message cpu command like sse4.1, you'
 
 pull docker image about anaconda distribution and download tensorflow conda package
 
+# in Windows env
+
 # build from source
 
 ### pull from github

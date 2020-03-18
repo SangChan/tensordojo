@@ -3,7 +3,7 @@
 - This is the place to try and learn machine learning
 - Tensorflow >= 2.0
 
-# in OSX env
+## in OSX env
 
 ### install python3
 
@@ -20,7 +20,7 @@ print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 
 - Visual Studio Code
 
-# in synology docker env
+## in synology docker env
 
 pull docker image from docker hub but need to build because celeron cpu doesn't support AVX
 
@@ -37,9 +37,13 @@ And if you don't want to see about warning message cpu command like sse4.1, you'
 
 pull docker image about anaconda distribution and download tensorflow conda package
 
-# in Windows env
+## in Windows env
 
-# build from source
+### install tensorflow
+
+### install ide
+
+## build from source
 
 ### pull from github
 
@@ -66,3 +70,5 @@ apt-get install openjdk-8-jdk
 ### install 
 
 <pre><code>pip install /tmp/tensorflow_pkg/tensorflow-version-tags.whl</code></pre>
+
+# Pytorch

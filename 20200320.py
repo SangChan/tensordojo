@@ -108,18 +108,18 @@ model.fit(data, labels, batch_size=32, epochs=5)
 
 class MyModel(tf.keras.Model):
 
-def __init__(self, num_classes=10):
-  super(MyModel, self).__init__(name='my_model')
-  self.num_classes = num_classes
-  # 층을 정의합니다.
-  self.dense_1 = layers.Dense(32, activation='relu')
-  self.dense_2 = layers.Dense(num_classes, activation='sigmoid')
+  def __init__(self, num_classes=10):
+    super(MyModel, self).__init__(name='my_model')
+    self.num_classes = num_classes
+    # 층을 정의합니다.
+    self.dense_1 = layers.Dense(32, activation='relu')
+    self.dense_2 = layers.Dense(num_classes, activation='sigmoid')
 
-def call(self, inputs):
-  # 정방향 패스를 정의합니다.
-  # `__init__` 메서드에서 정의한 층을 사용합니다.
-  x = self.dense_1(inputs)
-  return self.dense_2(x)
+  def call(self, inputs):
+    # 정방향 패스를 정의합니다.
+    # `__init__` 메서드에서 정의한 층을 사용합니다.
+    x = self.dense_1(inputs)
+    return self.dense_2(x)
 
 model = MyModel(num_classes=10)
 
@@ -133,28 +133,28 @@ model.fit(data, labels, batch_size=32, epochs=5)
 
 class MyLayer(layers.Layer):
 
-def __init__(self, output_dim, **kwargs):
-  self.output_dim = output_dim
-  super(MyLayer, self).__init__(**kwargs)
+  def __init__(self, output_dim, **kwargs):
+    self.output_dim = output_dim
+    super(MyLayer, self).__init__(**kwargs)
 
-def build(self, input_shape):
-  # 이 층에서 훈련할 가중치 변수를 만듭니다.
-  self.kernel = self.add_weight(name='kernel',
-                                shape=(input_shape[1], self.output_dim),
-                                initializer='uniform',
-                                trainable=True)
+  def build(self, input_shape):
+    # 이 층에서 훈련할 가중치 변수를 만듭니다.
+    self.kernel = self.add_weight(name='kernel',
+                                  shape=(input_shape[1], self.output_dim),
+                                  initializer='uniform',
+                                  trainable=True)
 
-def call(self, inputs):
-  return tf.matmul(inputs, self.kernel)
+  def call(self, inputs):
+    return tf.matmul(inputs, self.kernel)
 
-def get_config(self):
-  base_config = super(MyLayer, self).get_config()
-  base_config['output_dim'] = self.output_dim
-  return base_config
+  def get_config(self):
+    base_config = super(MyLayer, self).get_config()
+    base_config['output_dim'] = self.output_dim
+    return base_config
 
-@classmethod
-def from_config(cls, config):
-  return cls(**config)
+  @classmethod
+  def from_config(cls, config):
+    return cls(**config)
 
 model = tf.keras.Sequential([
     MyLayer(10),

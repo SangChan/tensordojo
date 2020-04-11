@@ -35,3 +35,7 @@ train_dataset = tf.data.experimental.make_csv_dataset(
     column_names=column_names,
     label_name=label_name,
     num_epochs=1)
+
+features, labels = next(iter(train_dataset))
+
+print(features)

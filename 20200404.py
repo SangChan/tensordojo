@@ -14,7 +14,8 @@ train_dataset_fp = tf.keras.utils.get_file(fname=os.path.basename(train_dataset_
 
 print("데이터셋이 복사된 위치: {}".format(train_dataset_fp))
 
-!head -n5 {train_dataset_fp}
+head -n5 {train_dataset_fp}
+#!head -n5 {train_dataset_fp}
 
 # CSV 파일안에서 컬럼의 순서
 column_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']

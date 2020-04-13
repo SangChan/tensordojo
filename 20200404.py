@@ -14,7 +14,6 @@ train_dataset_fp = tf.keras.utils.get_file(fname=os.path.basename(train_dataset_
 
 print("데이터셋이 복사된 위치: {}".format(train_dataset_fp))
 
-head -n5 {train_dataset_fp}
 #!head -n5 {train_dataset_fp}
 
 # CSV 파일안에서 컬럼의 순서
@@ -72,6 +71,15 @@ print("  예측: {}".format(tf.argmax(predictions, axis=1)))
 print("레이블: {}".format(labels))
 
 loss_object = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
+
+def loss(model, x, y):
+  y_ = model(x)
+
+  return loss_object(y_true=y, y_pred=y_)
+
+
+l = loss(model, features, labels)
+print("손실 테스트: {}".format(l))
 
 def grad(model, inputs, targets):
     with tf.GradientTape() as tape:

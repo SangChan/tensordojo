@@ -18,3 +18,14 @@ def assert_raises(error_class):
   else:
     raise Exception('Expected {} to be raised but no error was raised!'.format(
         error_class))
+
+@tf.function
+def add(a, b):
+  return a + b
+
+add(tf.ones([2, 2]), tf.ones([2, 2]))  #  [[2., 2.], [2., 2.]]
+
+v = tf.Variable(1.0)
+with tf.GradientTape() as tape:
+  result = add(v, 1.0)
+tape.gradient(result, v)

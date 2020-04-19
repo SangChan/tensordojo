@@ -29,3 +29,4 @@ v = tf.Variable(1.0)
 with tf.GradientTape() as tape:
   result = add(v, 1.0)
 tape.gradient(result, v)
+print(result)

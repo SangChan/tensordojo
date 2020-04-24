@@ -69,3 +69,15 @@ print(next_collatz(tf.constant([1, 2])))
 # We specified a 1-D tensor in the input signature, so this should fail.
 with assert_raises(ValueError):
   next_collatz(tf.constant([[1, 2], [3, 4]]))
+
+def train_one_step():
+  pass
+
+@tf.function
+def train(num_steps):
+  print("Tracing with num_steps = {}".format(num_steps))
+  for _ in tf.range(num_steps):
+    train_one_step()
+
+train(num_steps=10)
+train(num_steps=20)

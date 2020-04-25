@@ -81,3 +81,15 @@ def train(num_steps):
 
 train(num_steps=10)
 train(num_steps=20)
+
+train(num_steps=tf.constant(10))
+train(num_steps=tf.constant(20))
+
+@tf.function
+def f(x):
+  print("Traced with", x)
+  tf.print("Executed with", x)
+
+f(1)
+f(1)
+f(2)

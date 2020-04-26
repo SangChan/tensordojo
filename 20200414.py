@@ -93,3 +93,32 @@ def f(x):
 f(1)
 f(1)
 f(2)
+
+external_list = []
+
+def side_effect(x):
+  print('Python side effect')
+  external_list.append(x)
+
+@tf.function
+def f(x):
+  tf.py_function(side_effect, inp=[x], Tout=[])
+
+f(1)
+f(1)
+f(1)
+assert len(external_list) == 3
+# .numpy() call required because py_function casts 1 to tf.constant(1)
+assert external_list[0].numpy() == 1
+
+external_var = tf.Variable(0)
+@tf.function
+def buggy_consume_next(iterator):
+  external_var.assign_add(next(iterator))
+  tf.print("Value of external_var:", external_var)
+
+iterator = iter([0, 1, 2, 3])
+buggy_consume_next(iterator)
+# This reuses the first value from the iterator, rather than consuming the next value.
+buggy_consume_next(iterator)
+buggy_consume_next(iterator)

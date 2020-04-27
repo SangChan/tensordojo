@@ -122,3 +122,25 @@ buggy_consume_next(iterator)
 # This reuses the first value from the iterator, rather than consuming the next value.
 buggy_consume_next(iterator)
 buggy_consume_next(iterator)
+
+def measure_graph_size(f, *args):
+  g = f.get_concrete_function(*args).graph
+  print("{}({}) contains {} nodes in its graph".format(
+      f.__name__, ', '.join(map(str, args)), len(g.as_graph_def().node)))
+
+@tf.function
+def train(dataset):
+  loss = tf.constant(0)
+  for x, y in dataset:
+    loss += tf.abs(y - x) # Some dummy computation.
+  return loss
+
+small_data = [(1, 1)] * 2
+big_data = [(1, 1)] * 10
+measure_graph_size(train, small_data)
+measure_graph_size(train, big_data)
+
+measure_graph_size(train, tf.data.Dataset.from_generator(
+    lambda: small_data, (tf.int32, tf.int32)))
+measure_graph_size(train, tf.data.Dataset.from_generator(
+    lambda: big_data, (tf.int32, tf.int32)))

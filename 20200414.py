@@ -81,3 +81,66 @@ def train(num_steps):
 
 train(num_steps=10)
 train(num_steps=20)
+
+train(num_steps=tf.constant(10))
+train(num_steps=tf.constant(20))
+
+@tf.function
+def f(x):
+  print("Traced with", x)
+  tf.print("Executed with", x)
+
+f(1)
+f(1)
+f(2)
+
+external_list = []
+
+def side_effect(x):
+  print('Python side effect')
+  external_list.append(x)
+
+@tf.function
+def f(x):
+  tf.py_function(side_effect, inp=[x], Tout=[])
+
+f(1)
+f(1)
+f(1)
+assert len(external_list) == 3
+# .numpy() call required because py_function casts 1 to tf.constant(1)
+assert external_list[0].numpy() == 1
+
+external_var = tf.Variable(0)
+@tf.function
+def buggy_consume_next(iterator):
+  external_var.assign_add(next(iterator))
+  tf.print("Value of external_var:", external_var)
+
+iterator = iter([0, 1, 2, 3])
+buggy_consume_next(iterator)
+# This reuses the first value from the iterator, rather than consuming the next value.
+buggy_consume_next(iterator)
+buggy_consume_next(iterator)
+
+def measure_graph_size(f, *args):
+  g = f.get_concrete_function(*args).graph
+  print("{}({}) contains {} nodes in its graph".format(
+      f.__name__, ', '.join(map(str, args)), len(g.as_graph_def().node)))
+
+@tf.function
+def train(dataset):
+  loss = tf.constant(0)
+  for x, y in dataset:
+    loss += tf.abs(y - x) # Some dummy computation.
+  return loss
+
+small_data = [(1, 1)] * 2
+big_data = [(1, 1)] * 10
+measure_graph_size(train, small_data)
+measure_graph_size(train, big_data)
+
+measure_graph_size(train, tf.data.Dataset.from_generator(
+    lambda: small_data, (tf.int32, tf.int32)))
+measure_graph_size(train, tf.data.Dataset.from_generator(
+    lambda: big_data, (tf.int32, tf.int32)))

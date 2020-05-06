@@ -1,6 +1,9 @@
 # Tensor Dojo
 
 - This is the place to try and learn machine learning
+
+# Tensorflow
+
 - Tensorflow >= 2.0
 
 ## in OSX env
@@ -37,12 +40,6 @@ And if you don't want to see about warning message cpu command like sse4.1, you'
 
 pull docker image about anaconda distribution and download tensorflow conda package
 
-## in Windows env
-
-### install tensorflow
-
-### install ide
-
 ## build from source
 
 ### pull from github
@@ -72,3 +69,4 @@ apt-get install openjdk-8-jdk
 <pre><code>pip install /tmp/tensorflow_pkg/tensorflow-version-tags.whl</code></pre>
 
 # Pytorch
+

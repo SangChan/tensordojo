@@ -13,3 +13,14 @@ from tensorflow import keras
 from tensorflow.keras import layers
 
 print(tf.__version__)
+
+#if canImport(PythonKit)
+    import PythonKit
+#else
+    import Python
+#endif
+print(Python.version)
+
+import TensorFlow
+var x = Tensor<Float>([[1, 2], [3, 4]])
+print(x + x)

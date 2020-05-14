@@ -6,7 +6,7 @@
 
 - Tensorflow >= 2.0
 
-## in OSX env
+## OSX env
 
 ### install python3
 
@@ -23,7 +23,7 @@ print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 
 - Visual Studio Code
 
-## in synology docker env
+## synology docker env
 
 pull docker image from docker hub but need to build because celeron cpu doesn't support AVX
 
@@ -70,3 +70,6 @@ apt-get install openjdk-8-jdk
 
 # Pytorch
 
+## machine
+
+## requirement

@@ -1,1 +1,1 @@
-# 20200521_stocks
+# stocks started by june 2020

@@ -70,8 +70,3 @@ apt-get install openjdk-8-jdk
 
 <pre><code>pip install /tmp/tensorflow_pkg/tensorflow-version-tags.whl</code></pre>
 
-# Pytorch
-
-## machine
-
-## requirement

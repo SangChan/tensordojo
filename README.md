@@ -5,8 +5,6 @@
 # Tensorflow
 
 - Tensorflow : 2.0, 2.1
-- tfjs :
-- Tensorflow for Swift :
 
 ## OSX env
 

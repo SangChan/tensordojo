@@ -1,6 +1,7 @@
 # Tensor Dojo
 
 - This is the place to try and learn machine learning
+- examples or source code came from books.
 
 # Tensorflow
 

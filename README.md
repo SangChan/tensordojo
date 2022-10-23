@@ -15,11 +15,14 @@ https://docs.conda.io/en/latest/miniconda.html
 
 ### install tensorfow and gpu support
 
-<pre><code>conda create -n tensordojo python=3.9</code></pre>
-<pre><code>conda activate tensordojo</code></pre>
-<pre><code>conda install -c apple tensorflow-deps</code></pre>
-<pre><code>pip install tensorflow-macos</code></pre>
-<pre><code>install tensorflow-metal</code></pre>
+<pre><code>conda create -n tensordojo python=3.9
+conda activate tensordojo
+conda install -c apple tensorflow-deps
+pip install tensorflow-macos
+install tensorflow-metal</code></pre>
+
+### (optional) if fails at importing tensorflow
+
 <pre><code>pip install numpy --upgrade</code></pre>
 
 # (deprecated) Tensorflow

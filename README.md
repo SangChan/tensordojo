@@ -45,6 +45,8 @@ print(tf.reduce_sum(tf.random_normal([1000, 1000])))</code></pre>
 ### install ide
 
 - Visual Studio Code
+- install python plugin
+- select interpreter for python what we created before 
 
 ## synology docker env
 

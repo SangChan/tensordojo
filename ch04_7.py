@@ -11,3 +11,17 @@ model = tf.keras.Sequential([
 
 model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.1), loss='mse')
 model.summary()
+
+model.fit(X,Y, epochs=10)
+model.predict(X)
+
+import matplotlib.pyplot as plt
+
+line_x = np.arange(min(X), max(X), 0.01)
+line_y = model.predict(line_x)
+
+plt.plot(line_x, line_y, 'r-')
+plt.plot(X,Y,'bo')
+plt.xlabel('population growth rate (%)')
+plt.ylabel('elderly population rate(%)')
+plt.show()

@@ -20,3 +20,14 @@ test_Y /= y_std
 
 print(train_X[0])
 print(train_Y[0])
+
+import tensorflow as tf
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(units=52, activation='relu', input_shape=(13,)),
+    tf.keras.layers.Dense(units=39, activation='relu'),
+    tf.keras.layers.Dense(units=26, activation='relu'),
+    tf.keras.layers.Dense(units=1)
+])
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.07), loss='mse')
+model.summary()

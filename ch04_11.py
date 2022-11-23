@@ -41,3 +41,5 @@ plt.plot(history.history['val_loss'], 'r--', label='val_loss')
 plt.xlabel('Epoch')
 plt.legend
 plt.show()
+
+model.evaluate(test_X, test_Y)

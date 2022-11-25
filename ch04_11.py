@@ -55,3 +55,15 @@ plt.xlabel('test_Y')
 plt.ylabel('pred_Y')
 
 plt.show()
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(units=52, activation='relu', input_shape=(13,)),
+    tf.keras.layers.Dense(units=39, activation='relu'),
+    tf.keras.layers.Dense(units=26, activation='relu'),
+    tf.keras.layers.Dense(units=1),
+])
+
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.07),loss='mse')
+
+history = model.fit(train_X, train_Y, epochs=25, batch_size=32, validation_split=0.25, callbacks=[tf.keras.callbacks.EarlyStopping(patience=3, monitor='val_loss')])
+

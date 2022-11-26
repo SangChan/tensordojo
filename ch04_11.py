@@ -67,3 +67,21 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.07),loss='mse')
 
 history = model.fit(train_X, train_Y, epochs=25, batch_size=32, validation_split=0.25, callbacks=[tf.keras.callbacks.EarlyStopping(patience=3, monitor='val_loss')])
 
+plt.plot(history.history['loss'], 'b-', label = 'loss')
+plt.plot(history.history['val_loss'], 'r--', label='val_loss')
+plt.xlabel('Epoch')
+plt.legend()
+plt.show()
+
+model.evaluate(test_X, test_Y)
+
+pred_Y = model.predict(test_X)
+
+plt.figure(figsize=(5,5))
+plt.plot(test_Y, pred_Y, 'b.')
+plt.axis([min(test_Y), max(test_Y), min(test_Y), max(test_Y)])
+
+plt.plot([min(test_Y), max(test_Y)], [min(test_Y), max(test_Y)] ls="--", c=".3")
+plt.xlabel('test_X')
+plt.ylabel('pred_Y')
+plt.show()

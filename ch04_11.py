@@ -81,7 +81,7 @@ plt.figure(figsize=(5,5))
 plt.plot(test_Y, pred_Y, 'b.')
 plt.axis([min(test_Y), max(test_Y), min(test_Y), max(test_Y)])
 
-plt.plot([min(test_Y), max(test_Y)], [min(test_Y), max(test_Y)] ls="--", c=".3")
+plt.plot([min(test_Y), max(test_Y)], [min(test_Y), max(test_Y)], ls="--", c=".3")
 plt.xlabel('test_X')
 plt.ylabel('pred_Y')
 plt.show()

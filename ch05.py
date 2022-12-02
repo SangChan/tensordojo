@@ -17,3 +17,18 @@ plt.xticks([0,1])
 plt.show()
 
 print(wine['type'].value_counts())
+print(wine.info())
+
+wine_norm = (wine - wine.min()) / (wine.max() - wine.min())
+print(wine_norm.head())
+print(wine_norm.describe())
+
+import numpy as np
+wine_shuffle = wine_norm.sample(frac=1)
+print(wine_shuffle.head())
+wine_np = wine_shuffle.to_numpy()
+print(wine_np[:5])
+
+import tensorflow as tf
+train_idx = int(len(wine_np) * 0.8)
+train_X, train_Y = wine_np[:train_idx, :-1], wine_np[:train_idx, -1]

@@ -15,3 +15,12 @@ print(train_Y[0])
 train_X = train_X / 255.0
 test_X = test_X / 255.0
 print(train_X[0])
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Flatten(input_shape=(28,28)),
+    tf.keras.layers.Dense(units=128, activation='relu'),
+    tf.keras.layers.Dense(units=10, activation='softmax')
+])
+
+model.compile(optimizer=tf.keras.optimizers.Adam(), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.summary()

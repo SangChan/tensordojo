@@ -5,3 +5,10 @@ fashion_mnist = tf.keras.datasets.fashion_mnist
 
 train_X = train_X / 255.0
 test_X = test_X / 255.0
+
+print(train_X.shape, test_X.shape)
+
+train_X = train_X.reshape(-1,28,28,1)
+test_X = test_X.reshape(-1,28,28,1)
+
+print(train_X.shape, test_X.shape)

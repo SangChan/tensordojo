@@ -22,3 +22,15 @@ for c in range(16):
 
 plt.show()
 print(train_Y[:16])
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Conv2D(input_shape=(28,28,1), kernel_size=(3,3), filters=16),
+    tf.keras.layers.Conv2D(kernel_size=(3,3), filters=32),
+    tf.keras.layers.Conv2D(kernel_size=(3,3), filters=64),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(units=128, activation='relu'),
+    tf.keras.layers.Dense(units=10, activation='softmax')
+])
+
+model.compile(optimizer=tf.keras.optimizers.Adam(), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.summary()

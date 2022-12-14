@@ -56,3 +56,18 @@ plt.legend()
 plt.show()
 
 model.evaluate(test_X, test_Y, verbose=0)
+
+model = tf.keras.Sequential([
+    tf.keras.layers.Conv2D(input_shape=(28,28,1), kernel_size=(3,3), filters=32),
+    tf.keras.layers.MaxPool2D(strides=(2,2)),
+    tf.keras.layers.Conv2D(kernel_size=(3,3), filters=64),
+    tf.keras.layers.MaxPool2D(strides=(2,2)),
+    tf.keras.layers.Conv2D(kernel_size=(3,3), filters=128),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(units=128, activation='relu'),
+    tf.keras.layers.Dropout(rate=0.3),
+    tf.keras.layers.Dense(units=10, activation='softmax')
+])
+
+model.compile(optimizer=tf.keras.optimizers.Adam(), loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.summary()

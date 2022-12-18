@@ -25,7 +25,7 @@ install tensorflow-metal</code></pre>
 
 <pre><code>pip install numpy --upgrade</code></pre>
 
-# (deprecated) Tensorflow
+# (deprecated) Tensorflow for synology 718+
 
 - Tensorflow : 2.0, 2.1
 

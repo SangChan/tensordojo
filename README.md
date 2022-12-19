@@ -3,7 +3,7 @@
 - This is the place to try and learn machine learning
 - examples or source code came from books.
 
-# Tensorflow
+# Tensorflow for apple silicon
 
 - version : 2.10
 
@@ -25,7 +25,7 @@ install tensorflow-metal</code></pre>
 
 <pre><code>pip install numpy --upgrade</code></pre>
 
-# (deprecated) Tensorflow for synology 718+
+# (deprecated) Tensorflow for synology NAS
 
 - Tensorflow : 2.0, 2.1
 

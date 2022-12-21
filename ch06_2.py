@@ -62,3 +62,27 @@ plt.legend()
 plt.show()
 
 model.evaluate(test_X, test_Y, verbose=0)
+
+from keras.preprocessing.image import ImageDataGenerator
+import numpy as np
+
+image_generator = ImageDataGenerator(
+    rotation_range=10,
+    zoom_range=0.10,
+    shear_range=0.5,
+    width_shift_range=0.10,
+    height_shift_range=0.10,
+    horizontal_flip=True,
+    vertical_flip=False)
+
+augument_size = 100
+
+x_augmented = image_generator.flow(np.tile(train_X[0].reshape(28*28),100).reshape(-1,28,28,1), np.zeros(augument_size), batch_size=augument_size, shuffle=False).next()[0]
+
+plt.figure(figsize=(10,10))
+for c in range(100):
+    plt.subplot(10,10,c+1)
+    plt.axis('off')
+    plt.imshow(x_augmented[c].reshape(28,28), cmap='gray')
+
+plt.show()

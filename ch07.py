@@ -1,4 +1,5 @@
 import numpy as np
+import tensorflow as tf
 
 X = []
 Y = []
@@ -12,3 +13,10 @@ Y = np.array(Y)
 
 for i in range(len(X)):
     print(X[i], Y[i])
+
+model = tf.keras.Sequential([
+    tf.keras.layers.SimpleRNN(units=10, return_sequences=False, input_shape=[4,1]),
+    tf.keras.layers.Dense(1)
+])
+model.compile(optimizer='adam', loss='mse')
+model.summary()

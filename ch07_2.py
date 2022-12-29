@@ -21,3 +21,8 @@ model = tf.keras.Sequential([
 ])
 model.compile(optimizer='adam', loss='mse')
 model.summary()
+
+X = np.array(X)
+Y = np.array(Y)
+
+history = model.fit(X[:2560], Y[:2560], epochs=100, validation_split=0.2)

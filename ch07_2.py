@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 X = []
 Y = []
@@ -26,3 +27,9 @@ X = np.array(X)
 Y = np.array(Y)
 
 history = model.fit(X[:2560], Y[:2560], epochs=100, validation_split=0.2)
+
+plt.plot(history.history['loss'], 'b-', label='loss')
+plt.plot(history.history['val_loss'], 'r--', label='val_loss')
+plt.xlabel('Epoch')
+plt.legend()
+plt.show()

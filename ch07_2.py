@@ -33,3 +33,17 @@ plt.plot(history.history['val_loss'], 'r--', label='val_loss')
 plt.xlabel('Epoch')
 plt.legend()
 plt.show()
+
+model.evaluate(X[2560:], Y[2560:])
+prediction = model.predict(X[2560:2560+5])
+
+for i in range(5):
+    print(Y[2560+i], '\t', prediction[i][0], '\tdiff:' abs(prediction[i][0] - Y[2560+i]))
+
+prediction = model.predict(X[2560:])
+fail = 0
+for i in range(len(prediction)):
+    if abs(prediction[i][0] - Y[2560+i]) > 0.04:
+        fail += 1
+
+print('correctness:', (440-fail) / 440 *100, '%')

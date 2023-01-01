@@ -38,7 +38,7 @@ model.evaluate(X[2560:], Y[2560:])
 prediction = model.predict(X[2560:2560+5])
 
 for i in range(5):
-    print(Y[2560+i], '\t', prediction[i][0], '\tdiff:' abs(prediction[i][0] - Y[2560+i]))
+    print(Y[2560+i], '\t', prediction[i][0], '\tdiff:', abs(prediction[i][0] - Y[2560+i]))
 
 prediction = model.predict(X[2560:])
 fail = 0

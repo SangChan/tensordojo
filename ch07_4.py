@@ -122,7 +122,8 @@ def testmodel(epoch, logs):
         test_text_X = np.array([word2idx[c] if c in word2idx else word2idx['UNK'] for c in test_text_X])
         test_text_X = pad_sequences([test_text_X], maxlen=seq_length, padding='pre', value=word2idx['UNK'])
 
-        output_idx = model.predict_classes(test_text_X)
+        y_prob = model.predict(test_text_X, verbose=0) 
+        output_idx = y_prob.argmax(axis=-1)
         test_sentence += ' ' + idx2word[output_idx[0]]
     
     print()
@@ -143,7 +144,8 @@ for _ in range(next_words):
     test_text_X = np.array([word2idx[c] if c in word2idx else word2idx['UNK'] for c in test_text_X])
     test_text_X = pad_sequences([test_text_X], maxlen=seq_length, padding='pre', value=word2idx['UNK'])
     
-    output_idx = model.predict_classes(test_text_X)
+    y_prob = model.predict(test_text_X, verbose=0) 
+    output_idx = y_prob.argmax(axis=-1)
     test_sentence += ' ' + idx2word[output_idx[0]]
 
 print(test_sentence)
@@ -241,7 +243,8 @@ def testmodel(epoch, logs):
         test_text_X = np.array([char2idx[c] if c in char2idx else char2idx['UNK'] for c in test_text_X])
         test_text_X = pad_sequences([test_text_X], maxlen=seq_length, padding='pre', value=char2idx['UNK'])
 
-        output_idx = model.predict_classes(test_text_X)
+        y_prob = model.predict(test_text_X, verbose=0) 
+        output_idx = y_prob.argmax(axis=-1)
         test_sentence += idx2char[output_idx[0]]
     
     print()
@@ -263,7 +266,8 @@ for _ in range(next_chars):
     test_text_X = np.array([char2idx[c] if c in char2idx else char2idx['UNK'] for c in test_text_X])
     test_text_X = pad_sequences([test_text_X], maxlen=seq_length, padding='pre', value=char2idx['UNK'])
     
-    output_idx = model.predict_classes(test_text_X)
+    y_prob = model.predict(test_text_X, verbose=0) 
+    output_idx = y_prob.argmax(axis=-1)
     test_sentence += idx2char[output_idx[0]]
     
 

@@ -18,7 +18,7 @@ tf.keras.utils.plot_model(mobilev2)
 import os
 import pathlib
 from glob import glob
-content_data_url = '/content/sample_data'
+content_data_url = '~/workspace/content/sample_data'
 data_root_orig = tf.keras.utils.get_file('imagenetV2', 'https://s3-us-west-2.amazonaws.com/imagenetv2public/imagenetv2-top-images.tar.gz', cache_dir=content_data_url, extract=True)
-data_root = pathlib.Path(glob("/content/sample_data/datasets/*/")[0])
+data_root = pathlib.Path(glob("~/workspace/content/sample_data/datasets/*/")[0])
 print(data_root)

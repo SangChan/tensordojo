@@ -17,8 +17,12 @@ tf.keras.utils.plot_model(mobilev2)
 # 8.2 ImageNetV2-TopImages 불러오기
 import os
 import pathlib
-from glob import glob
-content_data_url = '~/workspace/content/sample_data'
+content_data_url = '/Users/sangchan.lee/workspace/content/sample_data'
 data_root_orig = tf.keras.utils.get_file('imagenetV2', 'https://s3-us-west-2.amazonaws.com/imagenetv2public/imagenetv2-top-images.tar.gz', cache_dir=content_data_url, extract=True)
-data_root = pathlib.Path(glob("~/workspace/content/sample_data/datasets/*/")[0])
+data_root = pathlib.Path(content_data_url+'/datasets/imagenetv2-top-images-format-val')
 print(data_root)
+
+for idx, item in enumerate(data_root.iterdir()):
+    print(item)
+    if idx == 9:
+        break

@@ -24,7 +24,6 @@ data_root = pathlib.Path(content_data_url+'/datasets/imagenetv2-top-images-forma
 print(data_root)
 
 for idx, item in enumerate(data_root.iterdir()):
-    print(item)
     if idx == 9:
         break
 
@@ -51,7 +50,6 @@ import matplotlib.pyplot as plt
 import random
 
 all_image_paths = list(data_root.glob('**/*.jpeg'))
-print(all_image_paths)
 all_image_paths = [str(path) for path in all_image_paths]
 # 이미지를 랜덤하게 섞습니다.
 random.shuffle(all_image_paths)
@@ -61,13 +59,18 @@ print('image_count:', image_count)
 
 plt.figure(figsize=(12,12))
 for c in range(9):
+    print("======================")
+    print("process : #",c+1)
     image_path = random.choice(all_image_paths)
     plt.subplot(3,3,c+1)
     plt.imshow(plt.imread(image_path))
     # idx = int(image_path.split('/')[-2]) + 1
     # plt.title(str(idx) + ', ' + label_text[idx])
+    print("random image path =",image_path)
     word = wordnet.synset_from_pos_and_offset('n',int(image_path.split('/')[-2][1:]))
+    print("word =",word)
     word = word.name().split('.')[0].replace('-','').replace('_','').replace(' ','')
     plt.title(str(label_text.index(word)) + ', ' + word)
     plt.axis('off')
+    print("======================")
 plt.show()

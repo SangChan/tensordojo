@@ -74,3 +74,26 @@ for c in range(9):
     plt.axis('off')
     print("======================")
 plt.show()
+
+# 8.6 MobileNet의 분류 성능 확인
+import cv2
+
+top_1 = 0
+top_5 = 0
+for image_path in all_image_paths:
+    img = cv2.imread(image_path)
+    img = cv2.resize(img, dsize=(224, 224))
+    img = img / 255.0
+    img = np.expand_dims(img, axis=0)
+    top_5_predict = model.predict(img)[0].argsort()[::-1][:5]
+    idx = int(image_path.split('/')[-2])+1
+    #word = wordnet.synset_from_pos_and_offset('n',int(image_path.split('/')[-2][1:]))
+    #word = word.name().split('.')[0].replace('-','').replace('_','').replace(' ','')
+    #idx = label_text.index(word)
+    if idx in top_5_predict:
+        top_5 += 1
+        if top_5_predict[0] == idx:
+            top_1 += 1
+
+print('Top-5 correctness:', top_5 / len(all_image_paths) * 100, '%')
+print('Top-1 correctness:', top_1 / len(all_image_paths) * 100, '%')

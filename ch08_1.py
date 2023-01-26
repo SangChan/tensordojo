@@ -97,3 +97,45 @@ for image_path in all_image_paths:
 
 print('Top-5 correctness:', top_5 / len(all_image_paths) * 100, '%')
 print('Top-1 correctness:', top_1 / len(all_image_paths) * 100, '%')
+
+# 8.7 MobileNet의 분류 라벨 확인
+plt.figure(figsize=(16,16))
+
+def softmax(x):
+    e_x = np.exp(x - np.max(x))
+    return e_x / e_x.sum(axis=0)
+  
+for c in range(3):
+    image_path = random.choice(all_image_paths)
+    
+    # 이미지 표시
+    plt.subplot(3,2,c*2+1)
+    plt.imshow(plt.imread(image_path))
+    idx = int(image_path.split('/')[-2]) + 1
+    plt.title(str(idx) + ', ' + label_text[idx])
+    #word = wordnet.synset_from_pos_and_offset('n',int(image_path.split('/')[-2][1:]))
+    #word = word.name().split('.')[0].replace('-','').replace('_','').replace(' ','')
+    #idx = label_text.index(word)
+    plt.title(str(idx) + ', ' + label_text[idx])
+    plt.axis('off')
+    
+    # 예측값 표시
+    plt.subplot(3,2,c*2+2)
+    img = cv2.imread(image_path)
+    img = cv2.resize(img, dsize=(224, 224))
+    img = img / 255.0
+    img = np.expand_dims(img, axis=0)
+    
+    # MobileNet을 이용한 예측
+    logits = model.predict(img)[0]
+    prediction = softmax(logits)
+    
+    # 가장 높은 확률의 예측값 5개를 뽑음
+    top_5_predict = prediction.argsort()[::-1][:5]
+    labels = [label_text[index] for index in top_5_predict]
+    color = ['gray'] * 5
+    if idx in top_5_predict:
+        color[top_5_predict.tolist().index(idx)] = 'green'
+    color = color[::-1]
+    plt.barh(range(5), prediction[top_5_predict][::-1] * 100, color=color)
+    plt.yticks(range(5), labels[::-1])

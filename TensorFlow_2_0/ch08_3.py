@@ -114,9 +114,9 @@ for n in range(epochs):
     if n % 5 == 0 or n == epochs - 1:
         imageio.imwrite('/Users/sangchan.lee/workspace/content/style_epoch_{0}.png'.format(n), image.read_value().numpy())
     display.clear_output(wait=True)
-    plt.imshow(image.read_value())
-    plt.title("Train step: {}".format(step))
-    plt.show()
+    #plt.imshow(image.read_value())
+    #plt.title("Train step: {}".format(step))
+    #plt.show()
 
 end = time.time()
 print("Total time: {:.1f}".format(end-start))
@@ -168,9 +168,9 @@ for n in range(epochs):
     if n % 5 == 0 or n == epochs - 1:
         imageio.imwrite('/Users/sangchan.lee/workspace/content/style_variation_epoch_{0}.png'.format(n), image.read_value().numpy())
     display.clear_output(wait=True)
-    plt.imshow(image.read_value())
-    plt.title("Train step: {}".format(step))
-    plt.show()
+    #plt.imshow(image.read_value())
+    #plt.title("Train step: {}".format(step))
+    #plt.show()
 
 end = time.time()
 print("Total time: {:.1f}".format(end-start))

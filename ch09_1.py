@@ -195,3 +195,26 @@ latent_vector_model = tf.keras.Model(inputs=model.input, outputs=model.layers[3]
 latent_vector = latent_vector_model.predict(train_X)
 print(latent_vector.shape)
 print(latent_vector[0])
+
+# 9.12 사이킷 런의 K-평균 클러스터링 알고리즘 사용
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(n_clusters=10, n_init=10, random_state=42)
+kmeans.fit(latent_vector)
+
+# 9.13 계산 결과 확인
+print(kmeans.labels_)
+print(kmeans.cluster_centers_.shape)
+print(kmeans.cluster_centers_[0])
+
+# 9.14 클러스터링 결과 출력
+plt.figure(figsize=(12,12))
+
+for i in range(10):
+    images = train_X[kmeans.labels_ == i]
+    for c in range(10):
+        plt.subplot(10, 10, i*10+c+1)
+        plt.imshow(images[c].reshape(28,28), cmap='gray')
+        plt.axis('off')
+        
+plt.show()

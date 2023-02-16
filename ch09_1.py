@@ -218,3 +218,66 @@ for i in range(10):
         plt.axis('off')
         
 plt.show()
+
+# 그림 9.9 출력 코드
+import scipy as sp
+t_dist = sp.stats.t(2.74)
+normal_dist = sp.stats.norm()
+
+x = np.linspace(-5, 5, 100)
+t_pdf = t_dist.pdf(x)
+normal_pdf = normal_dist.pdf(x)
+plt.plot(x, t_pdf, c='red', label='t-dist')
+plt.plot(x, normal_pdf, c='blue', label='normal-dist')
+plt.legend()
+plt.show()
+
+# 9.15 사이킷 런의 t-SNE 사용
+from sklearn.manifold import TSNE
+
+tsne = TSNE(n_components=2, learning_rate=100, perplexity=15, random_state=0)
+tsne_vector = tsne.fit_transform(latent_vector[:5000])
+
+cmap = plt.get_cmap('rainbow', 10)
+fig = plt.scatter(tsne_vector[:,0], tsne_vector[:,1], marker='.', c=train_Y[:5000], cmap=cmap)
+cb = plt.colorbar(fig, ticks=range(10))
+n_clusters = 10
+tick_locs = (np.arange(n_clusters) + 0.5)*(n_clusters-1)/n_clusters
+cb.set_ticks(tick_locs)
+cb.set_ticklabels(range(10))
+
+plt.show()
+
+# 9.16 다양한 perplexity 인수에 대한 t-SNE 결과
+
+perplexities = [5, 10, 15, 25, 50, 100]
+plt.figure(figsize=(8,12))
+
+for c in range(6):
+    tsne = TSNE(n_components=2, learning_rate=100, perplexity=perplexities[c], random_state=0)
+    tsne_vector = tsne.fit_transform(latent_vector[:5000])
+
+    plt.subplot(3, 2, c+1)
+    plt.scatter(tsne_vector[:,0], tsne_vector[:,1], marker='.', c=train_Y[:5000], cmap='rainbow')
+    plt.title('perplexity: {0}'.format(perplexities[c]))
+
+plt.show()
+
+# 9.17 t-SNE 클러스터 위에 MNIST 이미지 표시
+from matplotlib.offsetbox import TextArea, DrawingArea, OffsetImage, AnnotationBbox
+
+plt.figure(figsize=(16,16))
+
+tsne = TSNE(n_components=2, learning_rate=100, perplexity=15, random_state=0)
+tsne_vector = tsne.fit_transform(latent_vector[:5000])
+
+ax = plt.subplot(1, 1, 1)
+ax.scatter(tsne_vector[:,0], tsne_vector[:,1], marker='.', c=train_Y[:5000], cmap='rainbow')
+for i in range(200):
+    imagebox = OffsetImage(train_X[i].reshape(28,28))
+    ab = AnnotationBbox(imagebox, (tsne_vector[i,0], tsne_vector[i,1]), frameon=False, pad=0.0)
+    ax.add_artist(ab)
+
+ax.set_xticks([])
+ax.set_yticks([])
+plt.show()

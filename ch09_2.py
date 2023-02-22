@@ -119,4 +119,30 @@ plt.plot(history.history['val_psnr_metric'], 'r--', label='val_psnr')
 plt.xlabel('Epoch')
 plt.legend()
 plt.show()
-     
+
+# 9.29 test 이미지 super resolution
+img = tf.io.read_file(test_path[0])
+img = tf.image.decode_jpeg(img, channels=3)
+hr = tf.image.convert_image_dtype(img, tf.float32)
+
+lr = tf.image.resize(hr, [hr.shape[0]//2, hr.shape[1]//2])
+lr = tf.image.resize(lr, [hr.shape[0], hr.shape[1]])
+predict_hr = model.predict(np.expand_dims(lr, axis=0))
+
+print(tf.image.psnr(np.squeeze(predict_hr, axis=0), hr, max_val=1.0))
+print(tf.image.psnr(lr, hr, max_val=1.0))
+
+# 9.30 test 이미지 super resolution 결과 확인
+plt.figure(figsize=(8,16))
+
+plt.subplot(3, 1, 1)
+plt.imshow(hr)
+plt.title('original - hr')
+
+plt.subplot(3, 1, 2)
+plt.imshow(lr)
+plt.title('lr')
+
+plt.subplot(3, 1, 3)
+plt.imshow(np.squeeze(predict_hr, axis=0))
+plt.title('sr')
